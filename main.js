@@ -78,7 +78,7 @@ setTimeout(() => {
         <h2 style="margin-top:0;">uBlobeBM (Global)</h2>
         <input id="bm_name" placeholder="Name" style="width:100%;margin-bottom:5px;padding:5px;border:none;border-radius:4px;">
         <textarea id="bm_code" placeholder="Enter JavaScript here..." style="width:100%;height:80px;padding:5px;border:none;border-radius:4px;"></textarea>
-        <button id="bm_add" style="width:100%;margin-top:5px;padding:6px;border:none;border-radius:4px;background:#2c8ef4;color:#fff;">Add</button>
+        <button id="bm_add" style="width:100%;margin-top:5px;padding:6px;border:none;border-radius:4px;background:#000;color:#fff;">Add</button>
         <div id="bm_list" style="margin-top:10px;max-height:200px;overflow-y:auto;"></div>
       </div>
     `;
@@ -102,10 +102,10 @@ setTimeout(() => {
       list.innerHTML = "";
       bookmarklets.forEach((bm, i) => {
         const div = document.createElement("div");
-        div.style = "margin-bottom:6px;padding:5px;background:#2a2a2a;border-radius:5px;";
+        div.style = "margin-bottom:6px;padding:5px;background:#000000;border-radius:5px;";
         div.innerHTML = `
           <strong>${bm.name}</strong><br>
-          <button style="margin-right:5px;background:#4caf50;color:#fff;border:none;border-radius:3px;padding:3px 6px;"
+          <button style="margin-right:5px;background:#000;color:#fff;border:none;border-radius:3px;padding:3px 6px;"
             onclick="try{(${bm.code})()}catch(e){alert(e)}">▶ Run</button>
           <button style="background:#f44336;color:#fff;border:none;border-radius:3px;padding:3px 6px;"
             onclick="(${removeBookmarklet})( ${i} )">🗑 Remove</button>

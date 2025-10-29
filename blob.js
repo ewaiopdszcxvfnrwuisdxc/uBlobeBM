@@ -14,8 +14,8 @@
 
   // Open popup with Ctrl+Shift+~
   document.addEventListener("keydown", e => {
-    if(e.code=="Backquote" && e.ctrlKey && e.shiftKey && !isOpening && !isClosing){
-      if(blobFrame){
+    if (e.code == "Backquote" && e.ctrlKey && e.shiftKey && !isOpening && !isClosing) {
+      if (blobFrame) {
         closeWithAnimation(blobFrameContainer);
         blobFrame = null;
         return;
@@ -24,7 +24,7 @@
     }
   });
 
-  function openWithAnimation(){
+  function openWithAnimation() {
     isOpening = true;
     blobFrameContainer = document.createElement("div");
     blobFrameContainer.style.cssText = `
@@ -53,37 +53,38 @@
     isOpening = false;
   }
 
-  function closeWithAnimation(container){
+  function closeWithAnimation(container) {
     isClosing = true;
     container.style.opacity = 0;
     container.style.transform = "translate(-50%, -50%) scale(0.95)";
-    setTimeout(() => { container.remove(); blobFrame=null; isClosing=false; }, 300);
+    setTimeout(() => { container.remove(); blobFrame = null; isClosing = false; }, 300);
   }
 
-  function createInterface(container){
-container.innerHTML = `
-  <div style="padding:10px;font-family:'Varela Round',sans-serif;background:#000;color:#fff;height:100%;">
-    ...
-  </div>
-`;
-
-
-
+  function createInterface(container) {
+    container.innerHTML = `
+      <div style="padding:10px;font-family:'Varela Round',sans-serif;background:#000;color:#fff;height:100%;">
+        <h2 style="margin-top:0;">Bookmark Snoopy Executor (Global)</h2>
+        <input id="bm_name" placeholder="Name" style="width:100%;margin-bottom:5px;padding:5px;border:none;border-radius:4px;background:#222;color:#fff;">
+        <textarea id="bm_code" placeholder="Enter JavaScript here..." style="width:100%;height:80px;padding:5px;border:none;border-radius:4px;background:#222;color:#fff;"></textarea>
+        <button id="bm_add" style="width:100%;margin-top:5px;padding:6px;border:none;border-radius:4px;background:#000;color:#fff;">Add</button>
+        <div id="bm_list" style="margin-top:10px;max-height:250px;overflow-y:auto;"></div>
+      </div>
+    `;
 
     renderBookmarklets();
 
     container.querySelector("#bm_add").onclick = () => {
       const name = container.querySelector("#bm_name").value.trim();
       const code = container.querySelector("#bm_code").value.trim();
-      if(!name || !code) return alert("Enter both name and code!");
-      bookmarklets.push({name, code});
+      if (!name || !code) return alert("Enter both name and code!");
+      bookmarklets.push({ name, code });
       localStorage.setItem(STORAGE_KEY, JSON.stringify(bookmarklets));
       renderBookmarklets();
       container.querySelector("#bm_name").value = "";
       container.querySelector("#bm_code").value = "";
     };
 
-    function renderBookmarklets(){
+    function renderBookmarklets() {
       const list = container.querySelector("#bm_list");
       list.innerHTML = "";
       bookmarklets.forEach((bm, i) => {

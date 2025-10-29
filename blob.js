@@ -72,6 +72,7 @@ container.innerHTML = `
 `;
 
 
+
     renderBookmarklets();
 
     container.querySelector("#bm_add").onclick = () => {
